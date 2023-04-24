@@ -16,7 +16,7 @@ const handler = module.exports = {};
 {%- endfor %}
 {%- endif %}
  */
-handler.{{ channel.publish().id() }} = async ({message}) => {
+handler.{{ channel.publish().id() }} = async ({app, message}) => {
   {%- if channel.publish().ext('x-lambda') %}
   {%- set lambda = channel.publish().ext('x-lambda') %}
   fetch('{{ lambda.url }}', {
@@ -51,7 +51,7 @@ handler.{{ channel.publish().id() }} = async ({message}) => {
 {%- endfor %}
 {%- endif %}
  */
-handler.{{ channel.subscribe().id() }} = async ({message}) => {
+handler.{{ channel.subscribe().id() }} = async ({app, message}) => {
   // Implement your business logic here...
 };
 

@@ -15,7 +15,7 @@ const config = require('../lib/config');
 const serverConfig = {{ protocol | getConfig }};
 const {{ protocol | getProtocol | capitalize }}Adapter = require('hermesjs-{{ protocol | getProtocol }}');
 {%- for channelName, channel in asyncapi.channels() %}
-const {{ channelName | camelCase }} = require('./routes/{{ channelName | convertToFilename }}.js');
+const {{ channelName | camelCase }} = require('./routes/{{ channelName | convertToFilename }}.js')(app);
 {%- endfor %}
 
 {%- if params.securityScheme and (asyncapi.server(params.server).protocol() === 'kafka' or asyncapi.server(params.server).protocol() === 'kafka-secure') and asyncapi.components().securityScheme(params.securityScheme).type() === 'X509' %}
